@@ -1,0 +1,13 @@
+User-Agent: *
+Allow: /
+Allow:/rss.xml
+
+User-agent: GoogleBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+Disallow: /press-realeses$
+Disallow: /page$
+
+Sitemap: https://serdalo.ru/sitemap.xml

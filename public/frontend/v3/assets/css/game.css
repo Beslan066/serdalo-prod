@@ -1,0 +1,111 @@
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00; /* Цвет конфетти */
+    animation: confetti-fall linear infinite;
+}
+
+#words-list div{
+    padding: 5px;
+    border: 1px dashed #006633;
+    min-width: 50px;
+    margin-right: 20px;
+}
+
+#congrats-message {
+    font-size: 20px;
+    padding: 25px;
+}
+
+#main-word {
+    color: #006633;
+    text-transform: uppercase;
+}
+
+.loader {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+.loader > span {
+    display: inline-block;
+    color: #fff;
+    transform-style: preserve-3d;
+    transform-origin: 0 100%;
+    animation: anim 3s infinite linear;
+}
+.loader > span:nth-child(even) {
+    color: #00ed64;
+}
+.loader > span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.loader > span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.loader > span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.loader > span:nth-child(5) {
+    animation-delay: 0.8s;
+}
+.loader > span:nth-child(6) {
+    animation-delay: 1s;
+}
+.loader > span:nth-child(7) {
+    animation-delay: 1.2s;
+}
+.loader > span:nth-child(8) {
+    animation-delay: 1.4s;
+}
+.loader > span:nth-child(9) {
+    animation-delay: 1.6s;
+}
+.loader > span:nth-child(10) {
+    animation-delay: 1.8s;
+}
+.loader > span:nth-child(11) {
+    animation-delay: 2s;
+}
+.loader > span:nth-child(12) {
+    animation-delay: 2.2s;
+}
+.loader > span:nth-child(13) {
+    animation-delay: 2.4s;
+}
+.loader > span:nth-child(14) {
+    animation-delay: 2.6s;
+}
+@keyframes anim {
+    35% {
+        transform: rotateX(360deg);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+.game-card {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background-color: #006633;
+    max-width: 40%;
+    padding: 20px;
+    border-radius: 20px;
+    min-height: 200px;
+}
+
+.games-head h3 {
+    color: #006633;
+    font-size: 23px;
+    font-weight: 800;
+}

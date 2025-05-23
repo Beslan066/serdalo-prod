@@ -1,0 +1,20 @@
+.container {
+    margin-top: 40px;
+}
+
+.author-news-container .rubric-item1 .media-title {
+    min-height: 112px;
+}
+
+.author-news-container {
+    margin-top: 40px;
+}
+
+
+.author-news-container .material-content h3 {
+    min-height: 298px;
+}
+
+.page-tab-links .active {
+    margin-left: 5px !important;
+}

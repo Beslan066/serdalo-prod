@@ -1,0 +1,689 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ece9e2;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #FFFFFF;
+    height: 88px;
+}
+
+header .container {
+    padding-top: 23px;
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-title {
+    margin-left: 21px;
+}
+
+.logo-title p {
+    max-width: 218px;
+    height: 38px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #CFCFCF;
+}
+
+.menu-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu ul{
+    display: flex;
+}
+
+.menu ul li{
+    list-style: none;
+    margin-right: 30px;
+}
+
+.menu ul li:last-child{
+    margin-right: 50px;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.lang button {
+    width: 40px;
+    height: 30px;
+    left: 1407px;
+    top: 29px;
+    background: #E9E9E9;
+    border: none;
+}
+
+.lang button.active {
+    background: #006633;
+    color: #FFFFFF;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    margin-left: 57px;
+}
+
+.search-form {
+    display: none;
+    
+    
+}
+
+
+
+.search button {
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.search-btn {
+    
+    width: 25px;
+    height: 25px;   
+    background-image: url(../img/search.svg);
+}
+
+
+.search button:first-child {
+    margin-right: 15px;
+}
+
+
+
+.search-form form input{
+    position: absolute;
+    width: 450px;
+    height: 40px;
+    left: 1059px;
+    top: 24px;
+    border: 2px solid #E9E9E9;
+    display: flex;
+    align-items: center;
+}
+
+.search-form form input::placeholder{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+    padding: 5px;
+}
+
+.search-form form button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: none;
+    margin-bottom: 5px;
+    width: 37px;
+    height: 15px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+    
+}
+
+
+.show {
+    display: flex;
+    align-items: center;
+    transition:  2s linear;  
+    
+}
+
+
+.content {
+    display: flex;
+    max-width: 1290px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.page-title h2 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 36px;
+    color: #006633;
+
+}
+
+/* Стили музея */
+
+
+
+
+.awards {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.awards-cards {
+    display: flex;
+    margin-top: 20px;
+
+}
+
+.awards-card {
+    display: flex;
+    flex-direction: column;
+    width: 416px;
+    height: 276px;
+    background-color: #FFFFFF;
+    margin-bottom: 20px;
+    
+}
+
+.awards-card span {
+    padding-left: 20px;
+    margin-top: 22px;
+    height: 15px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #CFCFCF;
+    
+}
+
+.awards-card h3 {
+    padding-top: 15px;
+    
+    padding-left: 20px;
+    width: 317.29px;
+    height: 22px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #006633;
+
+    
+}
+
+
+.awards-card:not(:last-child) {
+    margin-right: 16px ;
+}
+
+.awards-cards-second-row {
+    display: flex;
+}
+
+.awards-cards-second-row .awards-card{
+    width: 308px;
+    height: 350px;
+}
+
+
+.awards-cards-second-row .awards-card img{
+
+    height: 175px;
+}
+
+
+.awards-cards-second-row .awards-card span {
+    padding-left: 20px;
+    margin-top: 22px;
+    height: 15px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #CFCFCF;
+    
+}
+
+.awards-cards-second-row .awards-card p {
+    width: 262.39px;
+    height: 60px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+    padding-left: 20px;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.awards-cards-second-row .awards-card h3 {
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 262.63px;
+    height: 44px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #006633;
+    
+}
+
+
+
+
+footer {
+    background: #F5F5F5;
+    height: 440px;
+}
+
+footer  {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    width:1280px;
+}
+
+.footer-social {
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.footer-social .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.links-document {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.links-document a{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    color: #006633;
+    text-decoration: none;
+}
+
+
+
+.social-icons {
+    display: flex;
+    margin-top: 79px;
+    margin-top: 25px;
+}
+
+.social-icon-item {
+    background-color: #006633;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon-item:not(:last-child) {
+    margin-right: 20px;
+}
+
+
+.social-icon-item img{
+    width: 21px;
+    height: 20px;
+    
+    
+}
+
+.social-icon-item:not(:last-child)  img{
+    margin-right: 2px;
+    
+    
+}
+
+
+.contact-info .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-top: 32px;
+
+}
+
+.footer-logo div{
+    display: flex;
+    width: 27px;
+    height: 27px;
+    background-color: #CFCFCF;
+    border-radius: 50%;
+    left: 87.77%;
+    right: 17.14%;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.footer-logo div img{
+    margin-left: 4px;
+}
+
+.redactor {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.adress {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-bottom: 25px;
+}
+
+.phone {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #000000;
+    
+}
+
+.mail {
+    text-decoration: none;
+    color: #006633;
+}
+
+.footer-desc {
+    display: flex;
+    flex-direction: column;
+    height: 135px;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.footer-desc .container {
+    padding-top: 20px;
+    margin-bottom: 30px;
+    
+}
+
+.footer-desc .container p{
+    width: 750px;
+    left: 322px;
+    top: 3914px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #7F7F7F;
+}
+
+.footer-desc .container p:first-child{
+    margin-bottom: 20px;
+}
+
+.editors .container {
+    margin-top: 40px;
+}
+
+.editors .page-title {
+    margin-bottom: 20px;
+}
+
+.iditors-cards {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.editor-card {
+    display: flex;
+    width: 416px;
+    height: 266px;
+    background-color: #FFFFFF;
+}
+
+.editor-card:not(:last-child) {
+    margin-right: 16px;
+}
+
+.editor-card {
+    width: 416px;
+    height: 266px;
+    background-color: #FFFFFF;
+}
+
+
+
+
+.editor-img {
+    width: 189px;
+    height: 266px;
+}
+
+.editor-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.editor-info {
+    padding-left: 18px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-info h3 {
+    width: 190.84px;
+    height: 44px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #000000;
+}
+
+.editor-info .editor-job {
+    padding-top: 100px;
+    width: 190.84px;
+    height: 30px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+}
+
+.editor-info .editor-years {
+    width: 78.76px;
+    height: 15px;
+    padding-top: 70px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #CFCFCF;
+
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 23px;
+}
+
+.show-more a{
+    color: #006633;
+    text-decoration: underline;
+}
+
+
+.muzeum {
+    display: flex;
+    flex-direction: column;
+}
+
+.muzeum-cards {
+    display: flex;
+    height: 405px;
+}
+
+.muzeum-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+
+.muzeum-card:not(:last-child) {
+    margin-right: 16px;
+}
+
+.muzeum-card  img {
+    width: 632px;
+    height: 350px;
+}
+
+
+.muzeum-card span{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 20px;
+    color: #000000;
+}
+
+
+.photogallery{
+    height: auto;
+
+}
+
+.photogallery .container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.photo {
+    width: 201px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.photo:not(:last-child) {
+    margin-right: 13px;
+}
+
+.photo img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+.newspapers .container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 93px;
+    flex-direction: column;
+}
+
+.newspapers-row {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.newspaper-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 633px;
+}
+
+.newspaper-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.newspaper-text span {
+    width: 633px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #7F7F7F;
+}
+
+
+.newspaper-text span {
+    padding-top: 15px;
+}
