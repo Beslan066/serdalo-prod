@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "league/csv": "^9.23",
         "pbmedia/laravel-ffmpeg": "^7.8",
         "spatie/array-to-xml": "^2.17",
         "spatie/laravel-feed": "^4.2",

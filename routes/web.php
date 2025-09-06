@@ -23,6 +23,7 @@ use App\Http\Controllers\Frontend\VideoStudioController as FrontendVideoStudioCo
 use App\Http\Controllers\Frontend\PhotoReportageController as PhotoReportageController;
 use App\Http\Controllers\RssController as RssController;
 use App\Http\Controllers\Frontend\VideoReportageController as VideoReportageController;
+use App\Http\Controllers\Other\ExportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,8 +53,9 @@ Route::get('/rss.xml', [RssController::class, 'generateRss']);
 
 Route::get('generate-yml', [FrontendHomeController::class, 'generateYml']);
 
+Route::get('/export/posts-with-translations', [ExportController::class, 'exportPostsWithTranslations'])
+    ->name('export.posts.translations');
 
-// In routes/web.php
 
 Route::get('/change-language/{language}', [FrontendLanguageController::class, 'change'])->name('change-language');
 Route::get('/change-version/{version}', [FrontendVersionController::class, 'change'])->name('change-version');
