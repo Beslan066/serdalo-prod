@@ -53,7 +53,10 @@
                 <div class="flex h-full font-semibold">
                     <div class="relative w-full h-full">
                         <div class="w-full h-full">
-                            @if($newspaper->file && $newspaper->file->path)
+                            @if($newspaper->thumb && $newspaper->thumb->path)
+                                <img class="w-full h-full object-cover" src="{{ Storage::url($newspaper->thumb->path) }}">
+                            @elseif($newspaper->file && $newspaper->file->path)
+                                {{-- Старая логика для обратной совместимости --}}
                                 @php
                                     $newspaper_thumb_path = str_replace('/sites/default/files/gazette-pdf/', '', $newspaper->file->path);
                                     $newspaper_thumb_path = 'https://serdalo.ru/sites/default/files/styles/max_650x650/public/pdfpreview/'
@@ -61,6 +64,10 @@
                                     $newspaper_thumb_path = str_replace('.pdf', '.png', $newspaper_thumb_path);
                                 @endphp
                                 <img class="w-full h-full object-cover" src="{{ $newspaper_thumb_path }}">
+                            @else
+                                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                    <span class="text-gray-400">Нет изображения</span>
+                                </div>
                             @endif
                         </div>
                         <div class="absolute left-0 bottom-0 w-full h-full flex items-end">

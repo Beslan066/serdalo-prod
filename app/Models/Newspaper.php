@@ -19,7 +19,17 @@ class Newspaper extends Model
     protected $casts = [
         'release_at' => 'date:d.m.Y',
     ];
-    
+    protected $fillable = [
+        'title',
+        'file_id',
+        'thumb_id',
+        'source_id',
+        'release_at',
+        'status',
+        'user_id'
+    ];
+
+
     public function getDisplayReleaseAtAttribute()
     {
         if($this->release_at->isToday()) {
@@ -38,9 +48,15 @@ class Newspaper extends Model
         }
         return $value;
     }
-    
-    public function file() 
+
+    public function file()
     {
         return $this->hasOne(MediaFile::class, 'id', 'file_id');
+    }
+
+    // Добавьте связь для превью
+    public function thumb()
+    {
+        return $this->hasOne(MediaFile::class, 'id', 'thumb_id');
     }
 }

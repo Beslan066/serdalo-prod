@@ -36,6 +36,7 @@ class NewspapersController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'max:255'],
             'file_id' => ['nullable', 'exists:files,id'],
+            'source_id' => ['nullable'],
             'release_at' => ['required', 'max:255'],
         ]);
 
@@ -50,6 +51,7 @@ class NewspapersController extends Controller
         $newspaper->user_id = Auth::user()->id;
         $newspaper->title = $request->title;
         $newspaper->file_id = $request->file_id;
+        $newspaper->source_id = $request->source_id;
         $newspaper->release_at = $request->release_at;
         $newspaper->save();
 

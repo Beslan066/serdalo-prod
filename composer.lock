@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0388ae96ce5462a3b39d0c60121411aa",
+    "content-hash": "7ebd8ad1cc585b5b4f971d56acabcb17",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1423,7 +1423,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
                 "reference": "04be355f8d6734c826045d02a1079ad658322dad",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-fileinfo": "*",
@@ -1441,16 +1447,16 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                },
                 "laravel": {
-                    "providers": [
-                        "Intervention\\Image\\ImageServiceProvider"
-                    ],
                     "aliases": {
                         "Image": "Intervention\\Image\\Facades\\Image"
-                    }
+                    },
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -3567,7 +3573,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/protonemedia/laravel-ffmpeg/zipball/8fd5667b8898b30531b335ef43c0938d92b60e87",
                 "reference": "8fd5667b8898b30531b335ef43c0938d92b60e87",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "evenement/evenement": "^3.0",
@@ -3592,12 +3604,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "ProtoneMedia\\LaravelFFMpeg\\Support\\ServiceProvider"
-                    ],
                     "aliases": {
                         "FFMpeg": "ProtoneMedia\\LaravelFFMpeg\\Support\\FFMpeg"
-                    }
+                    },
+                    "providers": [
+                        "ProtoneMedia\\LaravelFFMpeg\\Support\\ServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -10330,12 +10342,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "7.4|^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
