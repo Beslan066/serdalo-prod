@@ -1,9 +1,9 @@
 <!-- sidebar Новости -->
 <div class="cm-news_sidebar-wrapper col-span-10 sm:col-span-3 lg:col-span-2 xl:col-span-2 xl:pb-5">
-    <img src="{{asset('80logo.jpg')}}" alt="" class="victoryImg">
+    <!-- <img src="{{asset('80logo.jpg')}}" alt="" class="victoryImg">
     <div class="victory-block">
         <p>80 ПОБЕДА!</p>
-    </div>
+    </div> -->
     <div class="cm-news_sidebar flex flex-col gap-3 bg-1 xl:py-2.5">
         @foreach($posts_main as $post_main)
             <div class="cm-news_sidebar-item font-medium px-2.5 pb-2.5 border-b border-color-3 last:border-b-0">

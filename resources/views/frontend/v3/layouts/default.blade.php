@@ -1270,8 +1270,8 @@
 
 
 
-	{{--
-            <div class="header_wrapper desktop_cik bg-1">
+	
+            <!-- <div class="header_wrapper desktop_cik bg-1">
 
                     <header class="flex flex-row justify-between items-start md:items-center gap-5 max-w-7xl mx-auto p-5">
                         <img src="{{asset('frontend/img/banner_cik.png')}}" alt="Банер Сердало">
@@ -1286,7 +1286,7 @@
                 </header>
 
             </div>
-	--}}
+	 -->
             <!-- header -->
             <div class="header_wrapper bg-1">
                 <header class="flex flex-row justify-between items-start md:items-center gap-5 max-w-7xl mx-auto p-5">
