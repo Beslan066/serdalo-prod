@@ -56,6 +56,8 @@ Route::get('generate-yml', [FrontendHomeController::class, 'generateYml']);
 Route::get('/export/posts-with-translations', [ExportController::class, 'exportPostsWithTranslations'])
     ->name('export.posts.translations');
 
+        Route::get('/news-sitemap.xml', [FrontendPostController::class, 'newsSitemap'])->name('news-sitemap');
+
 
 Route::get('/change-language/{language}', [FrontendLanguageController::class, 'change'])->name('change-language');
 Route::get('/change-version/{version}', [FrontendVersionController::class, 'change'])->name('change-version');
@@ -113,7 +115,6 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLanguage()], function
     Route::post('/logout', [FrontendAuthController::class, 'logout'])->name('logout-frontend');
     Route::get('/news/{tag_id?}', [FrontendPostController::class, 'index'])->name('posts-index');
     Route::get('/{slug}', [FrontendPostController::class, 'single'])->name('post-single');
-    Route::get('/news-sitemap.xml', [FrontendPostController::class, 'newsSitemap'])->name('news-sitemap');
 
 });
 
