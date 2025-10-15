@@ -119,10 +119,16 @@ class PostController extends Controller
 
     public function newsSitemap()
     {
-        $posts = Post::with(['file', 'thumb'])
+        $posts = Post::with(['file', 'thumb', 'tags'])
             ->where('published_at', '>=', now()->subDays(2))
             ->orderBy('published_at', 'desc')
             ->get();
+
+        // Преобразуем все даты в Carbon объекты
+        $posts->transform(function($post) {
+            $post->published_at = \Carbon\Carbon::parse($post->published_at);
+            return $post;
+        });
 
         $content = view('frontend.v3.sitemaps.news', compact('posts'))->render();
 
