@@ -8,8 +8,8 @@
             "@type": "NewsArticle",
             "headline": "{{ addslashes($post->title) }}",
     "description": "{{ addslashes($post->lead) }}",
-    "datePublished": "{{ $post->published_at->toIso8601String() }}",
-    "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+    "datePublished": "{{ \Carbon\Carbon::parse($post->published_at)->toIso8601String() }}",
+    "dateModified": "{{ \Carbon\Carbon::parse($post->updated_at)->toIso8601String() }}",
     "author": {
         "@type": "Person",
         "name": "{{ addslashes($post->author->title ?? 'Редакция') }}"
