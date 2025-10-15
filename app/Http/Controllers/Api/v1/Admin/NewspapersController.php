@@ -37,6 +37,7 @@ class NewspapersController extends Controller
             'title' => ['required', 'max:255'],
             'file_id' => ['nullable', 'exists:files,id'],
             'source_id' => ['nullable'],
+            'thumb_id' => ['nullable'],
             'release_at' => ['required', 'max:255'],
         ]);
 
@@ -52,6 +53,7 @@ class NewspapersController extends Controller
         $newspaper->title = $request->title;
         $newspaper->file_id = $request->file_id;
         $newspaper->source_id = $request->source_id;
+        $newspaper->thumb_id = $request->thumb_id;
         $newspaper->release_at = $request->release_at;
         $newspaper->save();
 

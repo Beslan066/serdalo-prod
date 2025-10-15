@@ -1,6 +1,6 @@
 @extends('frontend/v3/layouts/default')
 
-@push('head')
+@section('head')
     @parent
     <script type="application/ld+json">
         {
@@ -39,7 +39,7 @@
         "articleSection": "{{ $post->tags->first()->title ?? 'Новости' }}"
 }
     </script>
-    @endpush
+@endsection
 
 @section('content')
 <div class="cm-single-page grid grid-cols-10 gap-5 news-single">
