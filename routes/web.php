@@ -113,13 +113,7 @@ Route::group(['prefix' => App\Http\Middleware\Language::getLanguage()], function
     Route::post('/logout', [FrontendAuthController::class, 'logout'])->name('logout-frontend');
     Route::get('/news/{tag_id?}', [FrontendPostController::class, 'index'])->name('posts-index');
     Route::get('/{slug}', [FrontendPostController::class, 'single'])->name('post-single');
-
-
-
-
-
-
-
+    Route::get('/news-sitemap.xml', [FrontendPostController::class, 'newsSitemap'])->name('news-sitemap');
 
 });
 

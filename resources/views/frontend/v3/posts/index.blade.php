@@ -1,4 +1,22 @@
 @extends('frontend/v3/layouts/default')
+
+@section('head')
+    @parent
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Новости",
+            "description": "Последние новости и события",
+            "publisher": {
+                "@type": "NewsMediaOrganization",
+                "name": "Сердало",
+                "url": "{{ url('/') }}"
+    }
+}
+    </script>
+@endsection
+
 @section('content')
 <div class="">
     @include('frontend.v3.partials.page_title', [

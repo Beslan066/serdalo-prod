@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
 
-use App;
 use App\Models\Post;
 use App\Models\Material;
 use App\Models\Tag;
@@ -115,6 +115,20 @@ class PostController extends Controller
 
 
         return view('frontend.v3.posts.posts-by-tag', compact('posts', 'categories', 'tagTitle'));
+    }
+
+    public function newsSitemap()
+    {
+        $posts = Post::with(['file', 'thumb'])
+            ->where('published_at', '>=', now()->subDays(2))
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        $content = view('frontend.v3.sitemaps.news', compact('posts'))->render();
+
+        return Response::make($content, 200, [
+            'Content-Type' => 'application/xml'
+        ]);
     }
 
 

@@ -1,4 +1,46 @@
 @extends('frontend/v3/layouts/default')
+
+@push('head')
+    @parent
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "{{ addslashes($post->title) }}",
+    "description": "{{ addslashes($post->lead) }}",
+    "datePublished": "{{ $post->published_at->toIso8601String() }}",
+    "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ addslashes($post->author->title ?? 'Редакция') }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Сердало",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('frontend/img/logo.svg') }}",
+            "width": "600",
+            "height": "60"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ route('post-single', $post->slug) }}"
+    },
+        @if($post->file)
+            "image": {
+                "@type": "ImageObject",
+                "url": "{{ $post->file->full_preview_path }}",
+        "width": "1200",
+        "height": "675"
+    },
+        @endif
+        "articleSection": "{{ $post->tags->first()->title ?? 'Новости' }}"
+}
+    </script>
+    @endpush
+
 @section('content')
 <div class="cm-single-page grid grid-cols-10 gap-5 news-single">
     @include('frontend.v3.partials.news_sidebar', [
@@ -65,7 +107,7 @@
 				@if(isset($post->translation->image_title))
                                 	<div class="photo-author ">{{$post->translation->image_title}}</div>
 				@endif
-				
+
 				@if(isset($post->translation->image_description))
                                 <div class="photo-description font-light">{{$post->translation->image_description}}</div>
 				@endif
