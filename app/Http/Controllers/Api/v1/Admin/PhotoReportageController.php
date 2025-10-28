@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
 use App\Models\MediaFile;
+use Intervention\Image\Facades\Image;
 
 class PhotoReportageController extends Controller
 {
@@ -36,37 +37,70 @@ class PhotoReportageController extends Controller
     }
     public function store(Request $request)
     {
-
-        /*if(!Auth::user()->hasRole('author')) {
-            return response()->json([
-                'error' => 'У вас нет прав для создания новостей'
-            ], 403);
-        }*/
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'max:255'],
-
             'lead' => ['required'],
             'description' => ['required'],
             'file_id' => ['nullable', 'exists:files,id'],
-
         ]);
 
-        $photoReportage = new photoReportage();
+        if($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
 
-
+        $photoReportage = new PhotoReportage();
         $photoReportage->title = $request->title;
         $photoReportage->file_id = $request->file_id;
         $photoReportage->lead = $request->lead;
         $photoReportage->description = $request->description;
         $photoReportage->published_at = $request->published_at;
-
-
         $photoReportage->save();
 
+        // Генерация WebP после сохранения фоторепортажа
+        if ($request->file_id) {
+            $this->generateWebPImagesForPhotoReportage($photoReportage);
+        }
+
         return response()->json([
-                                    'success' => 'Reportage created.',
-                                    'Reportage' => $photoReportage
-                                ]);
+            'success' => 'Reportage created.',
+            'Reportage' => $photoReportage
+        ]);
+    }
+
+    private function generateWebPImagesForPhotoReportage(PhotoReportage $photoReportage)
+    {
+        // Генерация для основного файла
+        if ($photoReportage->file && $photoReportage->file->type === 'image') {
+            $this->createWebPVersion($photoReportage->file);
+        }
+    }
+
+// Метод createWebPVersion уже должен быть в контроллере, если нет - добавьте:
+    private function createWebPVersion(MediaFile $mediaFile)
+    {
+        try {
+            $originalPath = storage_path('app/public/' . $mediaFile->path);
+
+            if (!file_exists($originalPath)) {
+                return;
+            }
+
+            $image = Image::make($originalPath);
+
+            // Генерация WebP версии
+            $webpPath = pathinfo($mediaFile->path, PATHINFO_DIRNAME) . '/' .
+                pathinfo($mediaFile->path, PATHINFO_FILENAME) . '.webp';
+
+            $webpFullPath = storage_path('app/public/' . $webpPath);
+
+            // Сохраняем WebP с качеством 80%
+            $image->encode('webp', 80)->save($webpFullPath);
+
+        } catch (\Exception $e) {
+            \Log::error('WebP generation error for file ' . $mediaFile->id . ': ' . $e->getMessage());
+        }
     }
     public function show($id)
     {
