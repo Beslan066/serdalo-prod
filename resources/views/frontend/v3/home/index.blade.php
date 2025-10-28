@@ -12,7 +12,27 @@
                     }
                 }
             @endphp
-
+            <div class="sm:hidden col-span-10">
+                <div class="flex h-full font-semibold">
+                    <div class="relative w-full h-full">
+                        @include('frontend.v3.partials.article_media', [
+                            'model' => $material_sticky,
+                            'link' => route('material-single', $material_sticky->slug),
+                            'icon_align' => 'justify-center items-start',
+                            'icon_size' => 'w-14 h-14 md:w-20 md:h-20',
+                            'classes' => 'w-full cm-aspect-16/9 sm:cm-aspect-4/3 md:cm-aspect-16/9'
+                        ])
+                        <div class="absolute left-0 bottom-0 w-full h-full flex items-end pointer-events-none">
+                            <div class="flex flex-col justify-end w-full min-h-1/2 p-5 color-1 cm-bd-gradient-1">
+                                <a href="{{ route('material-single', $material_sticky->slug) }}"
+                                   class="mb-2.5 text-3xl sm:text-lg md:text-2xl lg:text-3xl pointer-events-auto">{{ $material_sticky->subtitle_short }}</a>
+                                <span
+                                    class="cm-article-subtitle pointer-events-auto">{{ $material_sticky->title_short }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     @endif
     @include('frontend.v3.partials.news_sidebar', [
         'posts' => $posts_main,
@@ -32,7 +52,7 @@
                             }
                         }
                     @endphp
-                    <div class=" sm:block col-span-2 xl:col-span-1 row-span-2">
+                    <div class="hidden sm:block col-span-2 xl:col-span-1 row-span-2">
                         <div class="flex h-full font-semibold">
                             <div class="relative w-full h-full">
                                 @include('frontend.v3.partials.article_media', [
