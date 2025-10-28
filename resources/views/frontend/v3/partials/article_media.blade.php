@@ -51,9 +51,9 @@
             </div>
         </div>
     @else
-        <div class="w-full h-full {{ $classes }}">
+        <div class="w-full h-full {{ $classes }} ">
             @if($imageUrl)
-                <img class="w-full h-full {{ $classes }} object-cover"
+                <img class="w-full h-full {{ $classes }} object-cover sticky-image"
                      src="{{ $imageUrl }}"
                      alt="Новости Ингушетии: {{$model->title}}">
             @endif

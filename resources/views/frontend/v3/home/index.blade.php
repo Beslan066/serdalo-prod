@@ -12,27 +12,7 @@
                     }
                 }
             @endphp
-            <div class="sm:hidden col-span-10">
-                <div class="flex h-full font-semibold">
-                    <div class="relative w-full h-full">
-                        @include('frontend.v3.partials.article_media', [
-                            'model' => $material_sticky,
-                            'link' => route('material-single', $material_sticky->slug),
-                            'icon_align' => 'justify-center items-start',
-                            'icon_size' => 'w-14 h-14 md:w-20 md:h-20',
-                            'classes' => 'w-full cm-aspect-16/9 sm:cm-aspect-4/3 md:cm-aspect-16/9'
-                        ])
-                        <div class="absolute left-0 bottom-0 w-full h-full flex items-end pointer-events-none">
-                            <div class="flex flex-col justify-end w-full min-h-1/2 p-5 color-1 cm-bd-gradient-1">
-                                <a href="{{ route('material-single', $material_sticky->slug) }}"
-                                   class="mb-2.5 text-3xl sm:text-lg md:text-2xl lg:text-3xl pointer-events-auto">{{ $material_sticky->subtitle_short }}</a>
-                                <span
-                                    class="cm-article-subtitle pointer-events-auto">{{ $material_sticky->title_short }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
     @endif
     @include('frontend.v3.partials.news_sidebar', [
         'posts' => $posts_main,
@@ -40,7 +20,7 @@
     <!-- main block -->
         <div class="cm-home-page-right-col col-span-10 sm:col-span-7 lg:col-span-8 xl:col-span-8 h-fit">
             <!-- main news & materials -->
-            <div class="grid grid-cols-2 gap-3.5">
+            <div class="grid grid-cols-2 gap-3.5 sticky-block">
                 @if($material_sticky)
                     @php
                         $material_sticky_image_path = '';
@@ -52,7 +32,7 @@
                             }
                         }
                     @endphp
-                    <div class="hidden sm:block col-span-2 xl:col-span-1 row-span-2">
+                    <div class=" sm:block col-span-2 xl:col-span-1 row-span-2">
                         <div class="flex h-full font-semibold">
                             <div class="relative w-full h-full">
                                 @include('frontend.v3.partials.article_media', [
@@ -105,7 +85,7 @@
                         <div class="cm-section-2-item cm-section-videos col-span-1 flex flex-col">
                             <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Видео</span>
-                            </div>  
+                            </div>
                             <div class="h-full grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 @foreach($video_articles as $video_article)
                                     <div
@@ -144,7 +124,7 @@
                         <div class="cm-section-2-item cm-section-photos col-span-1 flex flex-col">
                             <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Фото</span>
-                            </div>  
+                            </div>
                             <div class="h-full grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                                 @foreach($photo_articles as $photo_article)
@@ -192,7 +172,7 @@
                 <div class="cm-section-2-item cm-section-videos col-span-2 flex flex-col">
                     <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Видео</span>
-                            </div>  
+                            </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         @foreach($video_articles as $video_article)
                             <div class="cm-section-videos-item col-span-1 flex flex-col bg-1 overflow-hidden">
@@ -220,7 +200,7 @@
                 <div class="cm-section-2-item cm-section-photos col-span-1 flex flex-col">
                 <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Фото</span>
-                            </div>  
+                            </div>
                     <div class="grid grid-cols-1 gap-5">
                         @foreach($photo_articles as $photo_article)
 
@@ -252,7 +232,7 @@
         <div class="cm-section-3 py-5">
         <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Публицистика</span>
-                            </div>  
+                            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                 @foreach($journalism as $item)
                     <div
@@ -294,7 +274,7 @@
         <div class="cm-section-3 py-5">
         <div class="mb-5">
                                 <span class="text-3xl font-black color-7">Не пропустите</span>
-                            </div>  
+                            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                 @foreach($materials_popular as $material_popular)
                     <div
