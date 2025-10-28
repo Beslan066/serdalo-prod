@@ -95,4 +95,38 @@ class Material extends Model
     {
         return $this->hasOne(Expert::class, 'id', 'expert_id');
     }
+
+    public function getWebpImageUrl()
+    {
+        if (!$this->file || $this->file->type !== 'image') {
+            return $this->file->full_path ?? null;
+        }
+
+        $originalPath = $this->file->path;
+        $webpPath = pathinfo($originalPath, PATHINFO_DIRNAME) . '/' .
+            pathinfo($originalPath, PATHINFO_FILENAME) . '.webp';
+
+        if (Storage::disk('public')->exists($webpPath)) {
+            return Storage::disk('public')->url($webpPath);
+        }
+
+        return $this->file->full_preview_path ?? $this->file->full_path;
+    }
+
+    public function getWebpThumbUrl()
+    {
+        if (!$this->thumb || $this->thumb->type !== 'image') {
+            return $this->thumb->full_path ?? null;
+        }
+
+        $originalPath = $this->thumb->path;
+        $webpPath = pathinfo($originalPath, PATHINFO_DIRNAME) . '/' .
+            pathinfo($originalPath, PATHINFO_FILENAME) . '.webp';
+
+        if (Storage::disk('public')->exists($webpPath)) {
+            return Storage::disk('public')->url($webpPath);
+        }
+
+        return $this->thumb->full_path;
+    }
 }

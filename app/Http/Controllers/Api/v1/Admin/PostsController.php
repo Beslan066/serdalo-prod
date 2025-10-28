@@ -17,6 +17,7 @@ use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Author;
 use App\Models\MediaFile;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -150,12 +151,58 @@ class PostsController extends Controller
 
         $post->save();
 
+        // Генерация WebP после сохранения поста
+        if ($request->file_id) {
+            $this->generateWebPImages($post);
+        }
+
         $post->tags()->sync($request->post_tags ?? []);
 
         return response()->json([
             'success' => 'Post created.',
             'post' => $post
         ]);
+    }
+
+    private function generateWebPImages(Post $post)
+    {
+        if (!$post->file || $post->file->type !== 'image') {
+            return;
+        }
+
+        try {
+            $originalPath = storage_path('app/public/' . $post->file->path);
+
+            if (!file_exists($originalPath)) {
+                return;
+            }
+
+            $image = Image::make($originalPath);
+
+            // Генерация WebP версии
+            $webpPath = pathinfo($post->file->path, PATHINFO_DIRNAME) . '/' .
+                pathinfo($post->file->path, PATHINFO_FILENAME) . '.webp';
+
+            $webpFullPath = storage_path('app/public/' . $webpPath);
+
+            // Сохраняем WebP с качеством 80%
+            $image->encode('webp', 80)->save($webpFullPath);
+
+            // Сохраняем информацию о WebP файле в базу
+            $webpFile = MediaFile::create([
+                'path' => $webpPath,
+                'type' => 'image',
+                'mime_type' => 'image/webp',
+                'size' => filesize($webpFullPath),
+                'original_name' => pathinfo($post->file->original_name, PATHINFO_FILENAME) . '.webp',
+            ]);
+
+            // Связываем WebP файл с постом (можно добавить поле webp_file_id в posts таблицу)
+            // Или хранить в отдельной таблице связей
+
+        } catch (\Exception $e) {
+            \Log::error('WebP generation error: ' . $e->getMessage());
+        }
     }
     public function show($id)
     {

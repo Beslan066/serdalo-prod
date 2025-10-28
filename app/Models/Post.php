@@ -126,4 +126,56 @@ class Post extends Model
     {
     	return $this->belongsTo(Category::class, 'category_id');
     }
+    public function getWebpImageAttribute()
+    {
+        if (!$this->file || $this->file->type !== 'image') {
+            return null;
+        }
+
+        // Ищем WebP файл по пути (альтернативный подход)
+        $webpPath = pathinfo($this->file->path, PATHINFO_DIRNAME) . '/' .
+            pathinfo($this->file->path, PATHINFO_FILENAME) . '.webp';
+
+        return MediaFile::where('path', $webpPath)->first();
+    }
+
+    public function getWebpImageUrl()
+    {
+        if (!$this->file || $this->file->type !== 'image') {
+            // Если это не изображение, возвращаем оригинальный путь
+            return $this->file->full_path ?? null;
+        }
+
+        // Генерируем путь к WebP файлу на основе оригинального файла
+        $originalPath = $this->file->path;
+        $webpPath = pathinfo($originalPath, PATHINFO_DIRNAME) . '/' .
+            pathinfo($originalPath, PATHINFO_FILENAME) . '.webp';
+
+        // Проверяем существует ли WebP файл
+        if (Storage::disk('public')->exists($webpPath)) {
+            return Storage::disk('public')->url($webpPath);
+        }
+
+        // Если WebP нет, возвращаем оригинальное изображение
+        return $this->file->full_preview_path ?? $this->file->full_path;
+    }
+
+// Также добавьте метод для миниатюры (thumb)
+    public function getWebpThumbUrl()
+    {
+        if (!$this->thumb || $this->thumb->type !== 'image') {
+            return $this->thumb->full_path ?? null;
+        }
+
+        $originalPath = $this->thumb->path;
+        $webpPath = pathinfo($originalPath, PATHINFO_DIRNAME) . '/' .
+            pathinfo($originalPath, PATHINFO_FILENAME) . '.webp';
+
+        if (Storage::disk('public')->exists($webpPath)) {
+            return Storage::disk('public')->url($webpPath);
+        }
+
+        return $this->thumb->full_path;
+    }
+
 }

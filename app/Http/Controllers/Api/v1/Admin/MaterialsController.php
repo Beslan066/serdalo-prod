@@ -16,6 +16,7 @@ use App\Models\Material;
 use App\Models\Category;
 use App\Models\Author;
 use App\Models\MediaFile;
+use Intervention\Image\Facades\Image;
 
 class MaterialsController extends Controller
 {
@@ -90,11 +91,6 @@ class MaterialsController extends Controller
     }
     public function store(Request $request)
     {
-        /*if(!Auth::user()->hasRole('author')) {
-            return response()->json([
-                'error' => 'У вас нет прав для создания новостей'
-            ], 403);
-        }*/
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'max:255'],
             'subtitle' => ['required', 'max:255'],
@@ -114,7 +110,6 @@ class MaterialsController extends Controller
             'published_at' => ['required'],
             'photo_description' => ['nullable'],
         ]);
-
 
         if($validator->fails()) {
             return response()->json([
@@ -149,10 +144,53 @@ class MaterialsController extends Controller
         $material->photo_description = $request->photo_description;
         $material->save();
 
+        // Генерация WebP после сохранения материала
+        if ($request->file_id || $request->thumb_id) {
+            $this->generateWebPImagesForMaterial($material);
+        }
+
         return response()->json([
             'success' => 'Material created.',
             'material' => $material
         ]);
+    }
+
+    private function generateWebPImagesForMaterial(Material $material)
+    {
+        // Генерация для основного файла
+        if ($material->file && $material->file->type === 'image') {
+            $this->createWebPVersion($material->file);
+        }
+
+        // Генерация для миниатюры
+        if ($material->thumb && $material->thumb->type === 'image') {
+            $this->createWebPVersion($material->thumb);
+        }
+    }
+
+    private function createWebPVersion(MediaFile $mediaFile)
+    {
+        try {
+            $originalPath = storage_path('app/public/' . $mediaFile->path);
+
+            if (!file_exists($originalPath)) {
+                return;
+            }
+
+            $image = Image::make($originalPath);
+
+            // Генерация WebP версии
+            $webpPath = pathinfo($mediaFile->path, PATHINFO_DIRNAME) . '/' .
+                pathinfo($mediaFile->path, PATHINFO_FILENAME) . '.webp';
+
+            $webpFullPath = storage_path('app/public/' . $webpPath);
+
+            // Сохраняем WebP с качеством 80%
+            $image->encode('webp', 80)->save($webpFullPath);
+
+        } catch (\Exception $e) {
+            \Log::error('WebP generation error for file ' . $mediaFile->id . ': ' . $e->getMessage());
+        }
     }
     public function show($id)
     {
