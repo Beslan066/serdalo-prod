@@ -68,12 +68,17 @@ class NewspapersController extends Controller
     }
     public function edit($id)
     {
-        $newspaper = Newspaper::find($id);
-        $newspaper_file = $newspaper->file;
+        $newspaper = Newspaper::with(['file', 'thumb'])->find($id);
+
+        if (!$newspaper) {
+            return response()->json([
+                'error' => 'Newspaper not found.'
+            ], 404);
+        }
 
         return response()->json([
             'newspaper' => $newspaper,
-            'files' => ($newspaper_file) ? [$newspaper_file] : [],
+            'files' => $newspaper->file ? [$newspaper->file] : [],
             'thumb' => $newspaper->thumb,
         ]);
     }
@@ -84,6 +89,8 @@ class NewspapersController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'max:255'],
             'file_id' => ['nullable', 'exists:files,id'],
+            'source_id' => ['nullable'],
+            'thumb_id' => ['nullable'],
             'release_at' => ['required', 'max:255'],
         ]);
 
@@ -97,6 +104,8 @@ class NewspapersController extends Controller
         //$newspaper->user_id = Auth::user()->id;
         $newspaper->title = $request->title;
         $newspaper->file_id = $request->file_id;
+        $newspaper->source_id = $request->source_id;
+        $newspaper->thumb_id = $request->thumb_id;
         $newspaper->release_at = $request->release_at;
         $newspaper->save();
 
