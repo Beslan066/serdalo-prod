@@ -17,7 +17,8 @@ class Material extends Model
 
     protected $fillable = [
         'expert_id',
-        'comment'
+        'comment',
+        'thumb_id',
     ];
 
     protected $appends = ['title_short', 'subtitle_short', 'display_published_at'];
@@ -96,7 +97,7 @@ class Material extends Model
         return $this->hasOne(Expert::class, 'id', 'expert_id');
     }
 
-    public function getWebpImageUrl()
+    public function getWebpImageUrlAttribute()
     {
         if (!$this->file || $this->file->type !== 'image') {
             return $this->file->full_path ?? null;
@@ -110,10 +111,11 @@ class Material extends Model
             return Storage::disk('public')->url($webpPath);
         }
 
+        // Если WebP нет, возвращаем оригинальное изображение
         return $this->file->full_preview_path ?? $this->file->full_path;
     }
 
-    public function getWebpThumbUrl()
+    public function getWebpThumbUrlAttribute()
     {
         if (!$this->thumb || $this->thumb->type !== 'image') {
             return $this->thumb->full_path ?? null;
@@ -128,5 +130,30 @@ class Material extends Model
         }
 
         return $this->thumb->full_path;
+    }
+
+    // Дополнительный метод для получения объекта WebP файла
+    public function getWebpImageAttribute()
+    {
+        if (!$this->file || $this->file->type !== 'image') {
+            return null;
+        }
+
+        $webpPath = pathinfo($this->file->path, PATHINFO_DIRNAME) . '/' .
+            pathinfo($this->file->path, PATHINFO_FILENAME) . '.webp';
+
+        return MediaFile::where('path', $webpPath)->first();
+    }
+
+    public function getWebpThumbAttribute()
+    {
+        if (!$this->thumb || $this->thumb->type !== 'image') {
+            return null;
+        }
+
+        $webpPath = pathinfo($this->thumb->path, PATHINFO_DIRNAME) . '/' .
+            pathinfo($this->thumb->path, PATHINFO_FILENAME) . '.webp';
+
+        return MediaFile::where('path', $webpPath)->first();
     }
 }

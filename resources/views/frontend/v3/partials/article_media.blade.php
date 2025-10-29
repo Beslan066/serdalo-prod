@@ -41,7 +41,7 @@
                 @if($model->thumb && $thumbUrl)
                     <img class="w-full h-full {{ $classes }} object-cover"
                          src="{{ $thumbUrl }}"
-                         alt="Новости Ингушетии: {{$model->title}}" fetchpriority=high>
+                         alt="Новости Ингушетии: {{$model->title}}" fetchpriority=high loading="lazy">
                 @endif
             </div>
             <div class="absolute left-0 bottom-0 w-full h-full flex {{ $icon_align }} p-2.5 color-1 poiner-events-none">
@@ -55,7 +55,7 @@
             @if($imageUrl)
                 <img class="w-full h-full {{ $classes }} object-cover sticky-image"
                      src="{{ $imageUrl }}"
-                     alt="Новости Ингушетии: {{$model->title}}" fetchpriority=high>
+                     alt="Новости Ингушетии: {{$model->title}}" fetchpriority=high loading="lazy">
             @endif
         </div>
     @endif

@@ -106,6 +106,7 @@ class MaterialsController extends Controller
             'author_id' => ['required', 'exists:authors,id'],
             'expert_id' => ['nullable', 'exists:experts,id'],
             'file_id' => ['nullable', 'exists:files,id'],
+            'thumb_id' => ['nullable', ],
             'photo_title' => ['nullable'],
             'published_at' => ['required'],
             'photo_description' => ['nullable'],
@@ -188,9 +189,28 @@ class MaterialsController extends Controller
             // Сохраняем WebP с качеством 80%
             $image->encode('webp', 80)->save($webpFullPath);
 
+            // Опционально: сохраняем информацию о WebP файле в базу
+            $this->createWebPFileRecord($mediaFile, $webpPath, $webpFullPath);
+
         } catch (\Exception $e) {
             \Log::error('WebP generation error for file ' . $mediaFile->id . ': ' . $e->getMessage());
         }
+    }
+
+    private function createWebPFileRecord(MediaFile $originalFile, string $webpPath, string $webpFullPath)
+    {
+        // Создаем запись о WebP файле в базе данных
+        $webpFile = MediaFile::create([
+            'path' => $webpPath,
+            'type' => 'image',
+            'mime_type' => 'image/webp',
+            'size' => filesize($webpFullPath),
+            'original_name' => pathinfo($originalFile->original_name, PATHINFO_FILENAME) . '.webp',
+            'user_id' => Auth::user()->id,
+            // добавьте другие необходимые поля
+        ]);
+
+        return $webpFile;
     }
     public function show($id)
     {
@@ -219,11 +239,6 @@ class MaterialsController extends Controller
     }
     public function update(Request $request, $id)
     {
-        /*if(!Auth::user()->hasRole('author')) {
-            return response()->json([
-                'error' => 'У вас нет прав для создания новостей'
-            ], 403);
-        }*/
         $material = Material::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
@@ -242,6 +257,7 @@ class MaterialsController extends Controller
             'category_id' => ['nullable', 'exists:categories,id'],//required
             'author_id' => ['required', 'exists:authors,id'],
             'file_id' => ['nullable', 'exists:files,id'],
+            'thumb_id' => ['present', 'nullable'],
             'published_at' => ['required'],
             'photo_description' => ['nullable'],
         ]);
@@ -251,6 +267,10 @@ class MaterialsController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
+
+        // Сохраняем старые ID файлов для проверки изменений
+        $oldFileId = $material->file_id;
+        $oldThumbId = $material->thumb_id;
 
         if($request->slug) {
             $material->slug = $request->slug;
@@ -278,10 +298,42 @@ class MaterialsController extends Controller
         $material->comment = $request->comment;
         $material->save();
 
+        // Проверяем, изменились ли файлы и генерируем WebP
+        $filesChanged = false;
+
+        // Проверяем основной файл
+        if ($request->file_id != $oldFileId) {
+            $filesChanged = true;
+        }
+
+        // Проверяем миниатюру
+        if ($request->thumb_id != $oldThumbId) {
+            $filesChanged = true;
+        }
+
+        // Генерация WebP если изменились файлы или их не было
+        if ($filesChanged || ($request->file_id && !$this->webpExistsForFile($request->file_id)) || ($request->thumb_id && !$this->webpExistsForFile($request->thumb_id))) {
+            $this->generateWebPImagesForMaterial($material);
+        }
+
         return response()->json([
-            'success' => 'Material created.',
+            'success' => 'Material updated.',
             'material' => $material
         ]);
+    }
+
+// Вспомогательный метод для проверки существования WebP
+    private function webpExistsForFile($fileId)
+    {
+        if (!$fileId) return false;
+
+        $file = MediaFile::find($fileId);
+        if (!$file || $file->type !== 'image') return false;
+
+        $webpPath = pathinfo($file->path, PATHINFO_DIRNAME) . '/' .
+            pathinfo($file->path, PATHINFO_FILENAME) . '.webp';
+
+        return Storage::disk('public')->exists($webpPath);
     }
     public function destroy($id)
     {

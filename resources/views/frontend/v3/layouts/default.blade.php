@@ -870,12 +870,9 @@
         .cm-bd-gradient-7 {
             background-image: linear-gradient(to bottom, transparent, #006633);
         }
-
         .menu-input form {
             display: none;
         }
-
-
         @media (min-width: 640px) and (max-width: 768px) {
             .cm-pagination-desktop .cm-pagination-links > a:nth-child(4),
             .cm-pagination-desktop .cm-pagination-links > a:nth-child(5),
@@ -887,14 +884,11 @@
             .cm-pagination-desktop .cm-pagination-links > a:nth-child(11) {
                 display: none;
             }
-
             .nav-modal {
                 max-width: 77.5px;
             }
 
-
         }
-
         @media (min-width: 768px) and (max-width: 1024px) {
             .cm-pagination-desktop .cm-pagination-links > a:nth-child(6),
             .cm-pagination-desktop .cm-pagination-links > a:nth-child(7),
@@ -908,25 +902,7 @@
             .menu-input form {
                 display: none;
             }
-
-
         }
-
-        /* single page ___ */
-        /*
-        .cm-content-media,
-        .cm-single-description > img,
-        .cm-single-description > video {
-            margin-left: -1.25rem;
-            margin-right: -1.25rem;
-        }
-        .cm-content-media .w-full {
-        }
-        .cm-single-description > img,
-        .cm-single-description > video {
-            max-width: calc(100% + 2.5rem);
-        }
-        */
         .cm-single-description > *:not(:last-child) {
             margin-bottom: 1rem;
         }
@@ -1353,8 +1329,6 @@
                 flex-wrap: wrap;
             }
         }
-
-
         @media (max-width: 480px) {
             .mobile-journalism {
                 display: none !important;
@@ -1508,6 +1482,7 @@
             padding: 25px;
             margin-bottom: 25px;
         }
+
         .expert-img {
             min-width: 110px;
             height: 145px;
@@ -1542,9 +1517,6 @@
             max-width: 600px;
         }
 
-    </style>
-
-    <style>
         .victory-block {
 
             width: 100%;
@@ -1567,22 +1539,21 @@
             color: white;
             display: none;
         }
-
         @media (max-width: 640px) {
             .victory-block {
                 display: flex;
             }
-
             .victoryImg {
                 display: none;
             }
         }
-
         .news-sidebar-title {
             color: #006633;
             font-weight: 600;
         }
     </style>
+
+
 </head>
 <body>
 <div class="page_wrapper flex flex-col">
@@ -1772,7 +1743,7 @@
                 <div class="footer-bottom max-w-7xl mx-auto p-5 color-9">
                     <div class="w-2/3 flex flex-col gap-5">
                         <p>
-                            <h3>
+                        <h3>
                             {{ __('Сетевое издание «Сердало» зарегистрировано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).') }}
 
                         </h3>
