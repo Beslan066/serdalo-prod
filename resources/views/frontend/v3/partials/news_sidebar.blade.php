@@ -5,8 +5,14 @@
         <p>80 ПОБЕДА!</p>
     </div> -->
     <div class="cm-news_sidebar flex flex-col gap-3 bg-1 xl:py-2.5">
+        @if(Route::is(['home', 'news.index']))
+            <h1 class="news-sidebar-title px-2.5">Новости</h1>
+        @else
+            <h2 class="news-sidebar-title px-2.5">Новости</h2>
+        @endif        <hr>
         @foreach($posts_main as $post_main)
             <div class="cm-news_sidebar-item font-medium px-2.5 pb-2.5 border-b border-color-3 last:border-b-0">
+
                 <div  style="display: flex; justify-content: space-between;" class="news-date-mobile">
                     @if(\Carbon\Carbon::parse($post_main->published_at)->isToday())
                         <div class="flex justify-between">
@@ -35,15 +41,19 @@
                                                 ])
                         <div class="absolute left-0 bottom-0 w-full h-full flex items-end pointer-events-none">
                             <div class="flex flex-col justify-end w-full min-h-1/2 p-2.5 color-1 cm-bd-gradient-1">
-                                <a href="{{ route('post-single', $post_main->slug) }}"
-                                   class="cm-article-subtitle pointer-events-auto">{{ $post_main->title_short }}</a>
+                                <h3>
+                                    <a href="{{ route('post-single', $post_main->slug) }}"
+                                       class="cm-article-subtitle pointer-events-auto">{{ $post_main->title_short }}</a>
+                                </h3>
                             </div>
                         </div>
 
                     </div>
                 @else
-                    <a href="{{ route('post-single', $post_main->slug) }}"
-                       class="block cm-article-subtitle color-2">{{ $post_main->title_short }}</a>
+                    <h3>
+                        <a href="{{ route('post-single', $post_main->slug) }}"
+                           class="block cm-article-subtitle color-2">{{ $post_main->title_short }}</a>
+                    </h3>
                 @endif
             </div>
         @endforeach

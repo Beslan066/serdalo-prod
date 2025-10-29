@@ -23,6 +23,12 @@
                 @if($post->tags->isNotEmpty())
                     <news:keywords>{{ $post->tags->pluck('title')->implode(', ') }}</news:keywords>
                 @endif
+                @if($post->file)
+                    <image:image>
+                        <image:loc>{{ $post->file->full_preview_path }}</image:loc>
+                        <image:title>{{ $post->title }}</image:title>
+                    </image:image>
+                @endif
             </news:news>
         </url>
     @endforeach

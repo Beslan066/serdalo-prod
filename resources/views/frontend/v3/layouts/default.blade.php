@@ -30,6 +30,26 @@
         @endif
     </title>
 
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsMediaOrganization",
+          "name": "Сердало",
+          "url": "https://serdalo.ru",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://serdalo.ru/frontend/v3/assets/media/base-v2/logo.svg",
+            "width": 600,
+            "height": 60
+          },
+          "sameAs": [
+            "https://vk.com/gserdalo",
+            "https://t.me/gserdalo"
+          ],
+          "description": "Общенациональная газета «Сердало» - главное печатное издание Республики Ингушетия"
+        }
+    </script>
+
     @yield('head')
 
 
@@ -1488,8 +1508,6 @@
             padding: 25px;
             margin-bottom: 25px;
         }
-
-
         .expert-img {
             min-width: 110px;
             height: 145px;
@@ -1560,6 +1578,10 @@
             }
         }
 
+        .news-sidebar-title {
+            color: #006633;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1593,17 +1615,29 @@
                 </div>
                 <div
                     class="header-lead flex flex-col self-start text-sm md:text-base font-semibold md:font-bold gap-2 color-5">
-                    <h1 class="leading-none">{{ __('Общенациональная газета') }} <br> {{ __('Республики Ингушетия') }}
-                    </h1>
+                    <h2 class="leading-none">{{ __('Общенациональная газета') }} <br> {{ __('Республики Ингушетия') }}
+                    </h2>
                 </div>
             </div>
             <div class="header-right flex flex-col sm:flex-row items-end sm:items-center gap-5">
                 <div class="header-right-item hidden lg:flex items-center">
                     <nav class="header-nav">
                         <ul class="flex items-center font-semibold gap-2.5">
-                            <li><a href="{{ route('posts-index') }}">{{ __('Новости') }}</a></li>
-                            <li><a href="{{ route('materials-index') }}">{{ __('Статьи') }}</a></li>
-                            <li><a href="{{ route('journalism-index') }}">{{ __('Публицистика') }}</a></li>
+                            <li>
+                                <h2>
+                                    <a href="{{ route('posts-index') }}">{{ __('Новости') }}</a>
+                                </h2>
+                            </li>
+                            <li>
+                                <h2>
+                                    <a href="{{ route('materials-index') }}">{{ __('Статьи') }}</a>
+                                </h2>
+                            </li>
+                            <li>
+                                <h2>
+                                    <a href="{{ route('journalism-index') }}">{{ __('Публицистика') }}</a>
+                                </h2>
+                            </li>
 
                         </ul>
                     </nav>
@@ -1664,9 +1698,15 @@
                         <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-5 justify-between pb-5 px-5">
                             <div>
                                 <nav class="footer-nav flex flex-col gap-2.5 color-7 text-lg font-bold">
-                                    <a href="{{route('about')}}">{{ __('Об издании') }}</a>
-                                    <a href="{{route('material-rules')}}">{{ __('Правила использования материалов') }}</a>
-                                    <a href="{{route('personal')}}">{{ __('Согласие на обработку персональных данных') }}</a>
+                                    <h2>
+                                        <a href="{{route('about')}}">{{ __('Об издании') }}</a>
+                                    </h2>
+                                    <h2>
+                                        <a href="{{route('material-rules')}}">{{ __('Правила использования материалов') }}</a>
+                                    </h2>
+                                    <h2>
+                                        <a href="{{route('personal')}}">{{ __('Согласие на обработку персональных данных') }}</a>
+                                    </h2>
                                 </nav>
                             </div>
                             <div class="footer-social flex flex-row gap-5">
@@ -1732,7 +1772,10 @@
                 <div class="footer-bottom max-w-7xl mx-auto p-5 color-9">
                     <div class="w-2/3 flex flex-col gap-5">
                         <p>
+                            <h3>
                             {{ __('Сетевое издание «Сердало» зарегистрировано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).') }}
+
+                        </h3>
                         </p>
                         <p>
                             Реестровая запись СМИ: ЭЛ № ФС 77-78323 от 15.05.2020 г. Учредитель: Государственное
@@ -1773,38 +1816,50 @@
                 <div class="mb-2.5">
                     <nav class="modal-nav mb-5">
                         <ul class="columns-2 font-semibold">
-                            <li class="mb-1.5 mobile-show-page"><a
-                                    href="{{ route('posts-index') }}">{{ __('Новости') }}</a></li>
-                            <li class="mb-1.5 mobile-show-page"><a
-                                    href="{{ route('materials-index') }}">{{ __('Статьи') }}</a></li>
-                            <li class="mb-1.5 mobile-show-page mobile-journalism"><a
-                                    href="{{ route('journalism-index') }}">{{ __('Публицистика') }}</a></li>
+                            <li class="mb-1.5 mobile-show-page">
+                                <h2>
+                                    <a
+                                        href="{{ route('posts-index') }}">{{ __('Новости') }}</a>
+                                </h2>
+                            </li>
+                            <li class="mb-1.5 mobile-show-page">
+                                <h2><a
+                                        href="{{ route('materials-index') }}">{{ __('Статьи') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5 mobile-show-page mobile-journalism">
+                                <h2><a
+                                        href="{{ route('journalism-index') }}">{{ __('Публицистика') }}</a></h2>
+                            </li>
                             @foreach($categories ?? [] as $category)
                                 @if($category->title !== 'Пресс-релизы' && $category->title !== 'Публицистика')
                                     <li class="mb-1.5">
-                                        <a href="{{ route('materials-index', $category->id) }}">
-                                            @if(App::getLocale() !== 'ru')
-                                                {{$category->tag_translate}}
-                                            @else
-                                                {{$category->title}}
-                                            @endif
-                                        </a>
+                                        <h2>
+                                            <a href="{{ route('materials-index', $category->id) }}">
+                                                @if(App::getLocale() !== 'ru')
+                                                    {{$category->tag_translate}}
+                                                @else
+                                                    {{$category->title}}
+                                                @endif
+                                            </a>
+                                        </h2>
                                     </li>
                                 @endif
                             @endforeach
                             <li class="mb-1.5">
-                                <a href="{{route('releases-index')}}">
-                                    @if(App::getLocale() !== 'ru')
-                                        Пресс-релизаш
-                                    @else
-                                        Пресс-релизы
-                                    @endif
-                                </a>
+                                <h2><a href="{{route('releases-index')}}">
+                                        @if(App::getLocale() !== 'ru')
+                                            Пресс-релизаш
+                                        @else
+                                            Пресс-релизы
+                                        @endif
+                                    </a></h2>
                             </li>
                             <li class="mb-1.5">
-                                <a href="{{route('journalism-index')}}">
-                                    {{ __('Публицистика') }}
-                                </a>
+                                <h2>
+                                    <a href="{{route('journalism-index')}}">
+                                        {{ __('Публицистика') }}
+                                    </a>
+                                </h2>
                             </li>
 
                             @if(auth())
@@ -1820,28 +1875,46 @@
                 <div class="">
                     <nav class="modal-footer-nav mb-5 color-4">
                         <ul class="">
-                            <li class="mb-1.5 mobile-hide-page"><a
-                                    href="{{ route('posts-index') }}">{{ __('Новости') }}</a></li>
-                            <li class="mb-1.5 mobile-hide-page"><a
-                                    href="{{ route('materials-index') }}">{{ __('Статьи') }}</a></li>
-                            <li class="mb-1.5"><a href="{{ route('documents-index') }}">{{ __('Документы') }}</a></li>
-                            <li class="mb-1.5"><a href="{{route('videostudio')}}">{{ __('Видеостудия Сердало') }}</a>
+                            <li class="mb-1.5 mobile-hide-page">
+                                <h2>
+                                    <a href="{{ route('posts-index') }}">{{ __('Новости') }}</a>
+                                </h2>
                             </li>
-                            <li class="mb-1.5"><a href="{{route('litSalon')}}">{{ __('Литературный салон') }}</a></li>
-                            <li class="mb-1.5"><a href="#">{{ __('Музей') }}</a></li>
-                            <li class="mb-1.5"><a href="{{route('dictionary')}}">{{ __('Словарь') }}</a></li>
+                            <li class="mb-1.5 mobile-hide-page">
+                                <h2><a
+                                        href="{{ route('materials-index') }}">{{ __('Статьи') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5">
+                                <h2><a href="{{ route('documents-index') }}">{{ __('Документы') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5">
+                                <h2><a href="{{route('videostudio')}}">{{ __('Видеостудия Сердало') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5">
+                                <h2><a href="{{route('litSalon')}}">{{ __('Литературный салон') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5">
+                                <h2><a href="#">{{ __('Музей') }}</a></h2>
+                            </li>
+                            <li class="mb-1.5">
+                                <h2><a href="{{route('dictionary')}}">{{ __('Словарь') }}</a></h2>
+                            </li>
                         </ul>
                     </nav>
                     <nav class="modal-footer-nav mb-5 color-4">
                         <ul class="">
-                            <li class="mb-1.5"><a href="{{route('archive-index')}}">{{ __('Архив газеты') }}</a></li>
+                            <li class="mb-1.5">
+                                <h2><a href="{{route('archive-index')}}">{{ __('Архив газеты') }}</a></h2>
+                            </li>
                             {{--                                    <li class="mb-1.5"><a href="{{route('subscribe-store')}}">{{ __('Подписка') }}</a></li>--}}
                         </ul>
                     </nav>
                     <nav class="modal-footer-nav color-4">
                         <ul class="">
-                            <li class="mb-1.5"><a href="{{route('about')}}">{{ __('Об издании') }}</a></li>
-                            <li class="mb-1.5"><a href="#">{{ __('Контакты') }}</a></li>
+                            <li class="mb-1.5"><h2><a href="{{route('about')}}">{{ __('Об издании') }}</a></h2></li>
+                            <li class="mb-1.5">
+                                <h2><a href="#">{{ __('Контакты') }}</a></h2>
+                            </li>
                             <!--<li class="mb-1.5"><a href="{{ route('change-version', 'v1') }}">v1</a></li>-->
                             <!--<li class="mb-1.5"><a style="background: green" href="#">v3</a></li>-->
                             @guest

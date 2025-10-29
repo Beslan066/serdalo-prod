@@ -7,7 +7,8 @@
                 <p class="mb-5 lg:text-xl color-1">
                     {{ __('(PDF) версия еженедельной общенациональной газеты «Сердало» и получайте свежие номера не выходя из дома!') }}
                 </p>
-                <a class="cm-button cm-button-7 w-full md:w-auto justify-center md:justify-start bg-1 color-2" href="{{route('payment-page')}}">{{ __('Подписаться') }}</a>
+                <h5>                <a class="cm-button cm-button-7 w-full md:w-auto justify-center md:justify-start bg-1 color-2" href="{{route('payment-page')}}">{{ __('Подписаться') }}</a>
+                </h5>
             </div>
             <div class="basis-2/5 relative hidden md:flex justify-end">
                 <img class="subscribe2-image absolute h-72" src="{{ asset('frontend/v3/assets/media/base-v2/image-7.webp') }}" alt="Подпишитесь на газету">

@@ -10,9 +10,9 @@
         </div>
         <div class="flex-1 basis-2/5 lg:basis-3/5 xl:basis-1/2 flex flex-col justify-between p-5">
             <div class="flex flex-col mb-3.5">
-                <a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a>
+                <h3><a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a></h3>
                 @if($item_subtitle)
-                    <span class="cm-article-subtitle">{{ $item_subtitle }}</span>
+                    <h4><span class="cm-article-subtitle">{{ $item_subtitle }}</span></h4>
                 @endif
             </div>
             <div class="">
@@ -41,9 +41,9 @@
         </div>
         <div class="flex-1 basis-1/2 md:basis-2/5 lg:basis-3/5 xl:basis-1/2 flex flex-col justify-between p-5">
             <div class="flex flex-col mb-3.5">
-                <a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a>
+                <h3><a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a></h3>
                 @if($item_subtitle)
-                    <span class="cm-article-subtitle">{{ $item_subtitle }}</span>
+                    <h4><span class="cm-article-subtitle">{{ $item_subtitle }}</span></h4>
                 @endif
             </div>
             <div class="">
@@ -63,9 +63,9 @@
     <div class="col-span-12 sm:col-span-6 xl:col-span-3 row-span-1">
         <div class="flex flex-col h-full justify-between bg-1 p-5">
             <div class="flex flex-col mb-3.5">
-                <a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a>
+                <h3><a href="{{ $link }}" class="cm-article-title">{{ $item_title }}</a></h3>
                 @if($item_subtitle)
-                    <span class="cm-article-subtitle">{{ $item_subtitle }}</span>
+                    <h4><span class="cm-article-subtitle">{{ $item_subtitle }}</span></h4>
                 @endif
             </div>
             <div class="">

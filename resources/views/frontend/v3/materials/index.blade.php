@@ -2,7 +2,7 @@
 @section('content')
 <div class="">
     <div class="mb-5">
-        <h1 class="text-3xl font-black color-7">{{$categoryTitle}}</span>
+        <h1 class="text-3xl font-black color-7">{{$categoryTitle}}</h1>
     </div>
 
     <div class="grid grid-cols-12 gap-5">
