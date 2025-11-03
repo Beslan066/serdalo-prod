@@ -9,7 +9,7 @@
                     <news:name>Сердало</news:name>
                     <news:language>ru</news:language>
                 </news:publication>
-                <news:publication_date>{{ $post->published_at }}</news:publication_date>
+                <news:publication_date>{{ $post->published_at->format('Y-m-d\TH:i:s\Z') }}</news:publication_date>
                 <news:title>{{ $post->title }}</news:title>
                 <news:keywords>{{ $post->tags->pluck('title')->implode(', ') }}</news:keywords>
                 @if($post->file)
