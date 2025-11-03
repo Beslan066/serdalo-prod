@@ -124,9 +124,13 @@ class PostController extends Controller
             ->orderBy('published_at', 'desc')
             ->get();
 
-        // Преобразуем все даты в Carbon объекты
+        // Преобразуем все даты в правильный формат для Google News
         $posts->transform(function($post) {
             $post->published_at = \Carbon\Carbon::parse($post->published_at);
+            // Форматируем для Google News
+            $post->formatted_date = $post->published_at->format('Y-m-d\TH:i:s\Z'); // UTC
+            // ИЛИ если хотите сохранить часовой пояс:
+            // $post->formatted_date = $post->published_at->format('Y-m-d\TH:i:sP');
             return $post;
         });
 
