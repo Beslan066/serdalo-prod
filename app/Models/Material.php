@@ -93,7 +93,7 @@ class Material extends Model
     }
 	public function user()
     {
-        return $this->hasOne(User::class, 'id', 'expert_id');
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
     public function expert()
