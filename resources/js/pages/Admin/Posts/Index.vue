@@ -79,14 +79,6 @@
                         <td class="border-t px-3 py-3">
                             <span>{{ post.created_at | displayDateTime }}</span>
                         </td>
-                        <td class="border-t px-3 py-3">
-                            <span class="text-sm" v-if="material.user">
-                                {{ post.user.name }}
-                            </span>
-                            <span class="text-sm text-gray-400" v-else>
-                                Не указан
-                            </span>
-                        </td>
                         <td class="border-t pl-3 pr-6 py-3 flex items-center gap-2">
                             <button-link-primary v-is-my="post.user_id" :to="'/admin/posts/' + post.id + '/edit'"><i class="fas fa-pencil-alt"></i></button-link-primary>
                             <button-link-primary v-if="is('translation_editor') && (post.translation && post.translation.id)" :to="'/admin/posts/posts_translations/' + post.translation.id + '/edit'"><i class="fas fa-pencil-alt"></i> перевод</button-link-primary>

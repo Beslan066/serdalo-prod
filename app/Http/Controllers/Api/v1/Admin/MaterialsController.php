@@ -1,4 +1,4 @@
-<?php
+es<?php
 
 namespace App\Http\Controllers\Api\v1\Admin;
 
@@ -22,7 +22,7 @@ class MaterialsController extends Controller
 {
     public function index(Request $request)
     {
-        $materials = Material::with(['translation', 'user']);
+        $materials = Material::with(['translation']);
         $materials = $this->setFilterQuery($materials, $request);
         $materials = $materials->orderBy('published_at', 'desc')->paginate(10);
 

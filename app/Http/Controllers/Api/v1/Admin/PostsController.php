@@ -23,7 +23,7 @@ class PostsController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::with(['translation', 'user']);
+        $posts = Post::with('translation');
         $posts = $this->setFilterQuery($posts, $request);
         $posts = $posts->orderBy('published_at', 'desc')->paginate(10);
         //dump($request->all());

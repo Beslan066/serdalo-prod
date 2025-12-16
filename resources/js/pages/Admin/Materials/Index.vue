@@ -92,14 +92,6 @@
                         <td class="border-t px-3 py-3">
                             <span>{{ material.published_at | displayDateTime }}</span>
                         </td>
-                        <td class="border-t px-3 py-3">
-                            <span class="text-sm" v-if="material.user">
-                                {{ material.user.name }}
-                            </span>
-                            <span class="text-sm text-gray-400" v-else>
-                                Не указан
-                            </span>
-                        </td>
 
                         <td class="border-t pl-3 pr-6 py-3 flex items-center gap-2">
                             <button-link-primary v-is-my="material.user_id"
