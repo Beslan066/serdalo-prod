@@ -2,15 +2,15 @@
   'app' => 
   array (
     'name' => 'Laravel',
-    'env' => 'local',
-    'debug' => true,
-    'url' => 'http://127.0.0.1:8000',
+    'env' => 'prod',
+    'debug' => false,
+    'url' => 'https://serdalo.ru',
     'asset_url' => NULL,
     'timezone' => 'Europe/Moscow',
     'locale' => 'ru',
     'fallback_locale' => 'en',
     'faker_locale' => 'ru_RU',
-    'key' => 'base64:I7l9pdEfX7//IBfFzb7ykb6g/3o94rwr2ArZ2ppidU8=',
+    'key' => 'base64:vgoC2xWxawRXOg+DeOjDV0HVeF5N0apslmC+7yNboEk=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -189,7 +189,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/home/ibragim/serdalo-prod/storage/framework/cache/data',
+        'path' => '/var/www/serdalo.site/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -384,7 +384,7 @@
     array (
       'enabled' => true,
       'driver' => 'file',
-      'path' => '/home/ibragim/serdalo-prod/storage/debugbar',
+      'path' => '/var/www/serdalo.site/storage/debugbar',
       'connection' => NULL,
       'provider' => '',
       'hostname' => '127.0.0.1',
@@ -505,20 +505,20 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/home/ibragim/serdalo-prod/storage/app',
+        'root' => '/var/www/serdalo.site/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/home/ibragim/serdalo-prod/storage/app/public',
-        'url' => 'http://127.0.0.1:8000/storage',
+        'root' => '/var/www/serdalo.site/storage/app/public',
+        'url' => 'https://serdalo.ru/storage',
         'visibility' => 'public',
       ),
       'public-old' => 
       array (
         'driver' => 'local',
-        'root' => '/home/ibragim/serdalo-prod/storage/app/public/sites',
-        'url' => 'http://127.0.0.1:8000/',
+        'root' => '/var/www/serdalo.site/storage/app/public/sites',
+        'url' => 'https://serdalo.ru/',
         'visibility' => 'public',
       ),
       's3' => 
@@ -535,8 +535,8 @@
     ),
     'links' => 
     array (
-      '/home/ibragim/serdalo-prod/public/storage' => '/home/ibragim/serdalo-prod/storage/app/public',
-      '/home/ibragim/serdalo-prod/public/sites' => '/home/ibragim/serdalo-prod/storage/app/public/sites',
+      '/var/www/serdalo.site/public/storage' => '/var/www/serdalo.site/storage/app/public',
+      '/var/www/serdalo.site/public/sites' => '/var/www/serdalo.site/storage/app/public/sites',
     ),
   ),
   'flare' => 
@@ -631,13 +631,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/home/ibragim/serdalo-prod/storage/logs/laravel.log',
+        'path' => '/var/www/serdalo.site/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/home/ibragim/serdalo-prod/storage/logs/laravel.log',
+        'path' => '/var/www/serdalo.site/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -688,7 +688,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/home/ibragim/serdalo-prod/storage/logs/laravel.log',
+        'path' => '/var/www/serdalo.site/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -754,7 +754,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/home/ibragim/serdalo-prod/resources/views/vendor/mail',
+        0 => '/var/www/serdalo.site/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -945,7 +945,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => '127.0.0.1',
+      5 => 'serdalo.ru',
     ),
     'guard' => 
     array (
@@ -983,7 +983,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/home/ibragim/serdalo-prod/storage/framework/sessions',
+    'files' => '/var/www/serdalo.site/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1021,9 +1021,9 @@
   array (
     'paths' => 
     array (
-      0 => '/home/ibragim/serdalo-prod/resources/views',
+      0 => '/var/www/serdalo.site/resources/views',
     ),
-    'compiled' => '/home/ibragim/serdalo-prod/storage/framework/views',
+    'compiled' => '/var/www/serdalo.site/storage/framework/views',
   ),
   'passport' => 
   array (

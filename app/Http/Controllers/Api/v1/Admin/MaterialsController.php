@@ -22,7 +22,7 @@ class MaterialsController extends Controller
 {
     public function index(Request $request)
     {
-        $materials = Material::with('translation');
+        $materials = Material::with(['translation', 'user']);
         $materials = $this->setFilterQuery($materials, $request);
         $materials = $materials->orderBy('published_at', 'desc')->paginate(10);
 

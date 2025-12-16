@@ -53,6 +53,7 @@
                         <th class="px-3 py-3 max-w-xs">Заголовок</th>
                         <th class="px-3 py-3 w-28">Перевод</th>
                         <th class="px-3 py-3">Дата создания</th>
+			<th class="px-3 py-3">Пользователь</th>
                         <th class="pl-3 pr-6 py-3">Действия</th>
                     </tr>
                     <tr v-for="material in materials.data" :key="material.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
@@ -71,6 +72,15 @@
                         <td class="border-t px-3 py-3">
                             <span>{{ material.published_at | displayDateTime }}</span>
                         </td>
+			<td class="border-t px-3 py-3">
+    <span class="text-sm" v-if="material.user">
+        {{ material.user.name }}
+    </span>
+    <span class="text-sm text-gray-400" v-else>
+        Не указан
+    </span>
+</td>
+
                         <td class="border-t pl-3 pr-6 py-3 flex items-center gap-2">
                             <button-link-primary v-is-my="material.user_id" :to="'/admin/materials/' + material.id + '/edit'"><i class="fas fa-pencil-alt"></i></button-link-primary>
                             <button-link-primary v-if="is('translation_editor') && (material.translation && material.translation.id)" :to="'/admin/materials/materials_translations/' + material.translation.id + '/edit'"><i class="fas fa-pencil-alt"></i> перевод</button-link-primary>
