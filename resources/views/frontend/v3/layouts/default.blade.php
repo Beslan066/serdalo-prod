@@ -1931,10 +1931,59 @@
     </div>
 </div>
 
+<div id="cookie-consent-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #006633; color: white; padding: 12px 16px; box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1); z-index: 9999; display: none; font-family: system-ui, -apple-system, sans-serif;">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 10px;">
+        <div style="font-size: 14px; line-height: 1.5; text-align: center;">
+            <p style="margin: 0 0 5px 0;">
+                Мы используем файлы cookie и сервис Яндекс.Метрика для сбора статистики и улучшения работы сайта.
+                Продолжая пользоваться сайтом, вы соглашаетесь с обработкой персональных данных.
+            </p>
+            <p style="margin: 0; font-size: 12px; opacity: 0.8;">
+                Подробнее в <a href="{{route('personal')}}" style="color: white; text-decoration: underline;">Согласии на обработку персональных данных</a>
+            </p>
+        </div>
+        <div>
+            <button id="accept-cookies" style="background-color: white; color: #006633; border: none; padding: 8px 24px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background-color 0.2s;"
+                    onmouseover="this.style.backgroundColor='#2c5282'"
+                    onmouseout="this.style.backgroundColor='#4a5568'">
+                OK
+            </button>
+        </div>
+    </div>
+</div>
+
 <div id="topNubex"><img src="{{asset('images/uparrowbutton_87886.svg')}}" width="30px" height="30px" alt="Вверх"/></div>
 </body>
 
 @stack('scripts')
+<script>
+    // Простой и надежный скрипт для работы cookie-уведомления
+    (function() {
+        // Проверяем, есть ли уже согласие
+        if (!localStorage.getItem('cookieConsent')) {
+            // Показываем бар
+            var cookieBar = document.getElementById('cookie-consent-bar');
+            if (cookieBar) {
+                cookieBar.style.display = 'block';
+            }
+
+            // Добавляем обработчик на кнопку
+            function handleAccept() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                var bar = document.getElementById('cookie-consent-bar');
+                if (bar) {
+                    bar.style.display = 'none';
+                }
+            }
+
+            // Находим кнопку и добавляем обработчик
+            var acceptBtn = document.getElementById('accept-cookies');
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', handleAccept);
+            }
+        }
+    })();
+</script>
 <script
     src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
