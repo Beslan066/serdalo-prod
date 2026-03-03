@@ -12,12 +12,9 @@ class PersonalDataController extends Controller
 
         $categories = Category::all();
 
-        if(session('frontend_version') != 'v1') {
-            $view = 'frontend.v3.pages.personal-data';
-        } else {
-            $view = 'frontend.personal-data';
-        }
-        return view($view, compact('categories'));
+
+        return view('frontend.v3.pages.personal-data', compact('categories'));
+
     }
 
     public function rules() {

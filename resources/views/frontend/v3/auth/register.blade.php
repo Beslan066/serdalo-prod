@@ -37,11 +37,11 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="">
                 <div class="mb-5 items-center color-1 @error('personal_data') is-invalid @enderror">
                     <input class="cm-checkbox" name="personal_data" type="checkbox" value="1" @if(old('personal_data')) checked @endif id="personal-data-input">
-                    <label class="color-2" for="personal-data-input">{{ __('Я принимаю правила регистрации и конфиденциальности и согласен (на) с политикой по защите персональных данных.') }}</label>
+                    <label class="color-2" for="personal-data-input">{{ __('Я принимаю правила регистрации и конфиденциальности и согласен (на) с политикой по защите персональных данных и с использованием Яндекс Метрики') }}</label>
                     @error('personal_data')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
